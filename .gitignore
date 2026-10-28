@@ -1,0 +1,51 @@
+# Flutter and Dart generated output
+.dart_tool/
+.packages
+.pub/
+build/
+coverage/
+.flutter-plugins
+.flutter-plugins-dependencies
+
+# Android local configuration and build output
+**/android/local.properties
+**/.gradle/
+**/android/key.properties
+*.jks
+*.keystore
+
+# iOS generated output and local signing state
+**/ios/Pods/
+**/ios/.symlinks/
+**/ios/Flutter/ephemeral/
+**/ios/Flutter/Generated.xcconfig
+**/ios/ServiceDefinitions.json
+**/xcuserdata/
+*.xcuserstate
+*.mobileprovision
+*.provisionprofile
+
+# Local IDE configuration
+.idea/
+.vscode/
+
+# Environment files: keep safe templates trackable
+.env
+.env.*
+!.env.example
+!.env.sample
+**/.env
+**/.env.*
+!**/.env.example
+!**/.env.sample
+
+# Private credentials and certificates
+*.pem
+*.p12
+*.pfx
+*.key
+**/secrets/
+
+# Local Supabase CLI state only. Keep config.toml, migrations, and seeds tracked.
+supabase/.temp/
+supabase/.branches/
