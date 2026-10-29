@@ -1,97 +1,151 @@
-# Wathb
+Wathb | وثب
 
-Wathb is a multi-sport coordination app prototype built with Flutter. The current app provides a bilingual interface and a small, local-only match planning flow. It is not a production-ready sports platform.
+A Multi-Sport Match Coordination App
 
-## Current Features
+Wathb is a Flutter application project focused on simplifying sports match organization and player coordination. Its long-term vision is to bring match planning, team formation, player interaction, and venue discovery into one platform.
 
-- Arabic and English localization with right-to-left and left-to-right layouts.
-- Light, dark, and system appearance options. The selected language and appearance are saved on the device with shared preferences.
-- A home screen where a user can create a match with a name, location, date, and time. The form requires a name and location and rejects a date and time in the past.
-- Upcoming match cards sorted by start time, plus an empty state when there are no matches.
-- A settings screen for language and appearance preferences.
+The project is currently in development. The available prototype provides a bilingual interface and basic local match-planning functionality. This README clearly distinguishes implemented features from planned development.
 
-Matches are held in application memory only. They disappear when the app closes and are not saved to Supabase or synchronized between devices.
+Project Status
 
-## Planned or Incomplete Features
+Current stage: Prototype — In Development
 
-The following product areas are not implemented in the Flutter app yet:
+The current application supports basic match creation and application preferences. Match records are held in application memory only. They are not saved to a backend or synchronized across devices.
 
-- Sign-up, sign-in, email confirmation, password recovery, and session management.
-- A working profile flow, friendships, follows, invitations, and privacy controls.
-- Match storage, server synchronization, participant management, comments, and recurring matches.
-- Team generation, attendance, results, player history, and player or venue ratings.
-- Venue discovery, in-app notifications, and push notifications.
+Features listed in the roadmap are planned or incomplete and should not be considered available until implemented and verified.
 
-Bookings and payments are not part of the current scope unless they are added through a separate product decision.
+Current Features
 
-## Supabase Integration Status
+* Arabic and English: Localization with right-to-left (RTL) and left-to-right (LTR) layouts.
+* Appearance settings: Light mode, dark mode, and system appearance.
+* Local match creation: Enter a match name, location, date, and time.
+* Input validation: Required-field checks and validation against past match times.
+* Upcoming matches: Display locally created matches sorted by start time.
+* Application preferences: Change language and appearance settings.
 
-The project includes the `supabase_flutter` dependency and optional client initialization. At startup, the app initializes the Supabase client only when both `SUPABASE_URL` and `SUPABASE_PUBLISHABLE_KEY` are provided as Dart compile-time environment values. If neither is provided, the app continues without initializing Supabase. Providing only one causes configuration validation to fail.
+Development Roadmap
 
-The app currently has no authentication flow and does not use Supabase to create, read, update, or synchronize matches. A SQL migration for a private profiles table and a database RLS test are present under `supabase/`, but their application to any Supabase project and the execution of that SQL test have not been verified here.
+The following items represent planned development work, not completed functionality.
 
-## Prerequisites
+Area	Planned capabilities
+Accounts	Registration, login, email verification, password recovery, and session management
+Player profiles	Player information, preferred sports, social links, and privacy settings
+Match coordination	Invitations, participant management, comments, and recurring matches
+Team management	Team formation, player distribution, lineups, and attendance
+Social features	Friend requests, following players, player history, and ratings
+Venues	Venue discovery and venue ratings
+Notifications	In-app notifications and push notifications
+Backend	Persistent storage, synchronization, access control, and server-side validation
 
-- Flutter with a Dart SDK that satisfies the `^3.13.5` constraint in `pubspec.yaml`. The recorded workstation used Flutter 3.47.6 and Dart 3.13.5.
-- Android Studio with a configured Android SDK, platform tools, and an Android emulator or connected device. The Android app's minimum SDK is API 26.
-- Git, for obtaining and managing the project source.
+Bookings and payments are not implemented in the current prototype. Their inclusion will depend on future product decisions.
 
-An iOS build requires macOS and Xcode. An iOS build has not been verified.
+Technology Stack
 
-## Install and Run on Android
+Technology	Purpose
+Flutter	Cross-platform application development
+Dart	Application programming language
+SharedPreferences	Local storage for language and appearance preferences
+Supabase	Backend integration groundwork
+SQL	Database migration and security policy resources
 
-From the project root, install the Flutter packages:
+Supabase Integration Status
 
-```sh
+The project includes the supabase_flutter dependency and optional client initialization.
+
+The Supabase client initializes only when both SUPABASE_URL and SUPABASE_PUBLISHABLE_KEY are supplied as Dart compile-time environment values.
+
+Backend functionality is incomplete. The current prototype does not use Supabase for authentication, match creation, match retrieval, updates, or cross-device synchronization.
+
+A database migration for a profiles table and an RLS test script are present under supabase/. Their application to a live Supabase project and successful execution have not been verified.
+
+Getting Started
+
+Prerequisites
+
+* Flutter SDK with a Dart version compatible with the project’s pubspec.yaml.
+* Android Studio and a configured Android SDK.
+* An Android emulator or connected Android device.
+* Git.
+
+iOS development requires macOS and Xcode. An iOS build has not been verified.
+
+1. Clone the Repository
+
+git clone https://github.com/k7po/Wathb.git
+cd Wathb
+
+2. Install Dependencies
+
 flutter pub get
-```
 
-Start an Android emulator from Android Studio, or list and launch an available Flutter emulator:
+3. Run the Application
 
-```sh
-flutter emulators
-flutter emulators --launch <emulator-id>
-```
+Check available devices:
 
-List connected devices and run the app in debug mode:
-
-```sh
 flutter devices
-flutter run -d <device-id>
-```
 
-Run the automated checks with:
+Run the application:
 
-```sh
+flutter run
+
+4. Run Tests and Static Analysis
+
 flutter test
 flutter analyze
-```
 
-## Verification Status
+Run these checks against the revision you intend to use. Previously recorded results do not guarantee that the current revision passes.
 
-Previously recorded checks reported that all 10 Flutter tests passed and `flutter analyze` found no issues. The Debug app was built, installed, and run on an Android 17 (API 37) emulator.
+Optional Supabase Configuration
 
-A Release build and an iOS build have not been verified.
+For development involving the initial Supabase integration, provide the project URL and publishable key:
 
-## Resources
+flutter run \
+  --dart-define=SUPABASE_URL=YOUR_SUPABASE_URL \
+  --dart-define=SUPABASE_PUBLISHABLE_KEY=YOUR_SUPABASE_PUBLISHABLE_KEY
 
-- `assets/fonts/` contains IBM Plex Sans Arabic font files for regular, medium, semibold, and bold weights, the Inter variable font, and the accompanying font license text files.
-- `lib/l10n/` contains the English and Arabic ARB translation sources and the generated Dart localization classes.
-- `android/app/src/main/res/` contains Android launcher icons, launch backgrounds, and day/night styles.
-- `ios/Runner/Assets.xcassets/` contains iOS app icon and launch image assets.
-- `supabase/migrations/` contains the profiles-table migration; `supabase/tests/database/` contains its RLS test script.
-- `test/` contains Flutter widget tests for the foundation and the local match creation flow.
+Replace the placeholders with your own project values.
 
-## Application Deployment
+Never commit service-role keys, database passwords, or other privileged credentials to a public repository. Client-side configuration must be supported by appropriate database permissions and Row Level Security (RLS) policies.
 
-Development and testing currently use Flutter's Debug workflow on an Android emulator or device. The local match flow is intended for interface and interaction testing; it does not persist match data after the app closes. The recorded Android emulator run does not establish production readiness.
+Repository Structure
 
-Before a production release:
+Path	Description
+lib/	Flutter application source code
+lib/l10n/	Arabic and English localization resources
+assets/fonts/	Application fonts and license files
+android/	Android platform configuration and resources
+ios/	iOS platform configuration and resources
+supabase/migrations/	Database migration resources
+supabase/tests/database/	Database security test resources
+test/	Flutter automated tests
+pubspec.yaml	Dependencies and project configuration
 
-1. Implement and test the remaining product features and their server-side data flows. In particular, implement authentication and match persistence before describing matches as synchronized.
-2. Select and configure development, test, and production Supabase projects as needed. Review and test migrations and RLS policies against a non-production database before any production rollout.
-3. Replace the Android debug signing configuration with a protected release signing setup. Confirm application identifiers, versioning, permissions, and release build behavior.
-4. Build and test the iOS app on macOS with Xcode, including signing and platform-specific configuration.
-5. Complete privacy, terms, support, store listing, and operational requirements; test release builds on target devices before distribution.
+Testing and Release Readiness
 
-The current Android Gradle release configuration uses the debug signing configuration. Do not distribute a Release build until production signing and the remaining release checks are complete.
+Previously recorded development notes reported that 10 Flutter tests passed, flutter analyze found no issues, and a Debug build ran on an Android emulator.
+
+These are historical results and should not be interpreted as a guarantee that the current revision passes all checks.
+
+A Release build and an iOS build have not been verified. The Android release configuration currently uses debug signing, so a production release must not be distributed until production signing and the remaining release checks are completed.
+
+Before a production release, the project requires:
+
+* Verified authentication and backend data operations.
+* Tested database permissions and RLS policies.
+* Secure production signing and verified release builds.
+* Testing on target devices and supported platforms.
+* Appropriate privacy, support, and store-release requirements.
+
+Contributing
+
+Wathb is an ongoing development project. Contributions and code reviews that improve functionality, accessibility, security, and maintainability are welcome.
+
+Please include relevant test results with proposed changes and clearly distinguish implemented functionality from planned features.
+
+License
+
+No license is currently declared in this README. Unless a license is added to the repository, do not assume the source code is available for unrestricted reuse or redistribution.
+
+⸻
+
+Repository: github.com/k7po/Wathb
