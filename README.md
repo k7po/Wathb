@@ -8,7 +8,6 @@ Wathb (وثب) is a Flutter application for organizing sports matches and helpin
 [![Dart](https://img.shields.io/badge/Dart-Language-0175C2?logo=dart&logoColor=white)](https://dart.dev/)
 [![Status](https://img.shields.io/badge/Status-In%20Development-orange)](#project-status)
 
-- **Repository:** https://github.com/k7po/Wathb
 - **Platform:** Flutter (Android and other Flutter targets, subject to testing)
 - **Languages:** Arabic and English
 
@@ -170,6 +169,3 @@ before submitting a pull request.
 No license is specified in this README. Check the repository for an existing license file or add an appropriate license before presenting the project as open source for reuse.
 
 ---
-
-**Project:** Wathb (وثب)
-**Repository:** https://github.com/k7po/Wathb
