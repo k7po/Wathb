@@ -1,9 +1,13 @@
 # Flutter and Dart generated output
 .dart_tool/
+.kotlin/
 .packages
 .pub/
 build/
 coverage/
+hs_err_pid*.log
+replay_pid*.log
+*.hprof
 .flutter-plugins
 .flutter-plugins-dependencies
 
@@ -28,6 +32,10 @@ coverage/
 # Local IDE configuration
 .idea/
 .vscode/
+*.iml
+
+# Node.js dependency output
+node_modules/
 
 # Environment files: keep safe templates trackable
 .env
