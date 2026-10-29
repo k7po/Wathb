@@ -1,151 +1,175 @@
-Wathb | وثب
+# Wathb | وثب
 
-A Multi-Sport Match Coordination App
+**A Multi-Sport Match Coordination App**
 
-Wathb is a Flutter application project focused on simplifying sports match organization and player coordination. Its long-term vision is to bring match planning, team formation, player interaction, and venue discovery into one platform.
+Wathb (وثب) is a Flutter application for organizing sports matches and helping players coordinate games. The project is under active development; this README distinguishes the current prototype from planned functionality.
 
-The project is currently in development. The available prototype provides a bilingual interface and basic local match-planning functionality. This README clearly distinguishes implemented features from planned development.
+[![Flutter](https://img.shields.io/badge/Flutter-Framework-02569B?logo=flutter&logoColor=white)](https://flutter.dev/)
+[![Dart](https://img.shields.io/badge/Dart-Language-0175C2?logo=dart&logoColor=white)](https://dart.dev/)
+[![Status](https://img.shields.io/badge/Status-In%20Development-orange)](#project-status)
 
-Project Status
+- **Repository:** https://github.com/k7po/Wathb
+- **Platform:** Flutter (Android and other Flutter targets, subject to testing)
+- **Languages:** Arabic and English
 
-Current stage: Prototype — In Development
+---
 
-The current application supports basic match creation and application preferences. Match records are held in application memory only. They are not saved to a backend or synchronized across devices.
+## Overview
 
-Features listed in the roadmap are planned or incomplete and should not be considered available until implemented and verified.
+Wathb aims to make it easier for players to arrange matches, invite friends, organize teams, and coordinate sports activities in one place.
 
-Current Features
+The current codebase is a prototype. Features listed under **Current prototype** are distinct from items in the roadmap and should not be interpreted as completed production functionality.
 
-* Arabic and English: Localization with right-to-left (RTL) and left-to-right (LTR) layouts.
-* Appearance settings: Light mode, dark mode, and system appearance.
-* Local match creation: Enter a match name, location, date, and time.
-* Input validation: Required-field checks and validation against past match times.
-* Upcoming matches: Display locally created matches sorted by start time.
-* Application preferences: Change language and appearance settings.
+## Current prototype
 
-Development Roadmap
+The repository currently includes the following app-level functionality:
 
-The following items represent planned development work, not completed functionality.
+- Arabic and English interface support, including right-to-left and left-to-right layouts.
+- Light, dark, and system theme preferences.
+- Local match creation with basic details such as name, location, date, and time.
+- Basic input validation.
+- A list of upcoming matches ordered by time.
+- Local preference storage.
 
-Area	Planned capabilities
-Accounts	Registration, login, email verification, password recovery, and session management
-Player profiles	Player information, preferred sports, social links, and privacy settings
-Match coordination	Invitations, participant management, comments, and recurring matches
-Team management	Team formation, player distribution, lineups, and attendance
-Social features	Friend requests, following players, player history, and ratings
-Venues	Venue discovery and venue ratings
-Notifications	In-app notifications and push notifications
-Backend	Persistent storage, synchronization, access control, and server-side validation
+> **Data note:** Match data and preferences in the prototype are stored locally. They are not automatically shared with other users or synchronized between devices.
 
-Bookings and payments are not implemented in the current prototype. Their inclusion will depend on future product decisions.
+## Roadmap
 
-Technology Stack
+The following are planned or require further implementation and verification:
 
-Technology	Purpose
-Flutter	Cross-platform application development
-Dart	Application programming language
-SharedPreferences	Local storage for language and appearance preferences
-Supabase	Backend integration groundwork
-SQL	Database migration and security policy resources
+| Area | Intended capability |
+| --- | --- |
+| Accounts | Secure registration, sign-in, and account management |
+| Player profiles | Player cards, preferred sports/positions, and privacy controls |
+| Match coordination | Shared matches, invitations, and participant management |
+| Team management | Team balancing, team assignment, and lineups |
+| Social features | Friend requests, following players, and player ratings |
+| Venues | Venue discovery, ratings, and booking integrations |
+| Notifications | Match invitations, reminders, and match updates |
+| Payments | Cost splitting and payment workflow |
+| Backend | Reliable shared data, authorization, and server-side validation |
 
-Supabase Integration Status
+Roadmap items are not claims of completed functionality.
 
-The project includes the supabase_flutter dependency and optional client initialization.
+## Technology stack
 
-The Supabase client initializes only when both SUPABASE_URL and SUPABASE_PUBLISHABLE_KEY are supplied as Dart compile-time environment values.
+- **Flutter / Dart** — application UI and cross-platform development.
+- **SharedPreferences** — local preference persistence.
+- **Supabase** — backend integration groundwork; production authentication and shared match-data flows must be implemented and verified before they can be considered available.
+- **SQL** — database schema and policy resources, where present in the repository.
 
-Backend functionality is incomplete. The current prototype does not use Supabase for authentication, match creation, match retrieval, updates, or cross-device synchronization.
+### Supabase status
 
-A database migration for a profiles table and an RLS test script are present under supabase/. Their application to a live Supabase project and successful execution have not been verified.
+Having Supabase configuration, SQL scripts, or Row Level Security (RLS) policies in the repository does not by itself mean the app is connected to a live project. Before treating backend features as production-ready, verify that:
 
-Getting Started
+1. The correct Supabase project URL and publishable/anon key are configured safely.
+2. Authentication is implemented and tested.
+3. Match and invitation operations read from and write to the database.
+4. RLS policies restrict access as intended.
+5. Secrets such as a `service_role` key are never embedded in the client app.
 
-Prerequisites
+## Getting started
 
-* Flutter SDK with a Dart version compatible with the project’s pubspec.yaml.
-* Android Studio and a configured Android SDK.
-* An Android emulator or connected Android device.
-* Git.
+### Requirements
 
-iOS development requires macOS and Xcode. An iOS build has not been verified.
+Install the following tools before running the app:
 
-1. Clone the Repository
+- [Flutter SDK](https://docs.flutter.dev/get-started/install)
+- [Dart SDK](https://dart.dev/get-dart) (included with Flutter)
+- [Git](https://git-scm.com/downloads)
+- An Android emulator or a supported physical device; install Android Studio if you are targeting Android.
 
+Confirm your environment:
+
+```bash
+flutter doctor
+```
+
+### Clone and run
+
+```bash
 git clone https://github.com/k7po/Wathb.git
 cd Wathb
-
-2. Install Dependencies
-
 flutter pub get
-
-3. Run the Application
-
-Check available devices:
-
 flutter devices
-
-Run the application:
-
 flutter run
+```
 
-4. Run Tests and Static Analysis
+### Run checks
 
+```bash
 flutter test
 flutter analyze
+```
 
-Run these checks against the revision you intend to use. Previously recorded results do not guarantee that the current revision passes.
+Resolve any reported errors before preparing a release.
 
-Optional Supabase Configuration
+### Optional Supabase configuration
 
-For development involving the initial Supabase integration, provide the project URL and publishable key:
+If the app's current code expects compile-time Supabase values, supply your own project values when running it. For example:
 
+```bash
 flutter run \
-  --dart-define=SUPABASE_URL=YOUR_SUPABASE_URL \
-  --dart-define=SUPABASE_PUBLISHABLE_KEY=YOUR_SUPABASE_PUBLISHABLE_KEY
+--dart-define=SUPABASE_URL=https://YOUR_PROJECT.supabase.co \
+--dart-define=SUPABASE_ANON_KEY=YOUR_PUBLISHABLE_OR_ANON_KEY
+```
 
-Replace the placeholders with your own project values.
+Replace the placeholders with values from your own Supabase project. Do not commit private credentials or a `service_role` key. Confirm the exact variable names expected by the current source code before using this command.
 
-Never commit service-role keys, database passwords, or other privileged credentials to a public repository. Client-side configuration must be supported by appropriate database permissions and Row Level Security (RLS) policies.
+## Repository structure
 
-Repository Structure
+The exact structure can evolve. Check the repository for the current files and folders.
 
-Path	Description
-lib/	Flutter application source code
-lib/l10n/	Arabic and English localization resources
-assets/fonts/	Application fonts and license files
-android/	Android platform configuration and resources
-ios/	iOS platform configuration and resources
-supabase/migrations/	Database migration resources
-supabase/tests/database/	Database security test resources
-test/	Flutter automated tests
-pubspec.yaml	Dependencies and project configuration
+| Path | Purpose |
+| --- | --- |
+| `lib/` | Flutter application source code |
+| `test/` | Automated tests |
+| `android/` | Android platform project |
+| `ios/` | iOS platform project |
+| `web/` | Web platform project, if enabled |
+| `windows/` | Windows platform project, if enabled |
+| `linux/` | Linux platform project, if enabled |
+| `macos/` | macOS platform project, if enabled |
+| `supabase/` | Backend SQL/configuration resources, if present |
+| `pubspec.yaml` | Dependencies and Flutter project metadata |
 
-Testing and Release Readiness
+Some platform folders or backend resources may not exist in every checkout.
 
-Previously recorded development notes reported that 10 Flutter tests passed, flutter analyze found no issues, and a Debug build ran on an Android emulator.
+## Testing and release readiness
 
-These are historical results and should not be interpreted as a guarantee that the current revision passes all checks.
+Run `flutter test` and `flutter analyze` on the current checkout before relying on any previous test results. A successful debug run does not establish that every feature works in production.
 
-A Release build and an iOS build have not been verified. The Android release configuration currently uses debug signing, so a production release must not be distributed until production signing and the remaining release checks are completed.
+Before publishing a release:
 
-Before a production release, the project requires:
+- Test on the target physical devices and supported OS versions.
+- Verify sign-in, shared data, invitations, authorization, and error handling end to end.
+- Configure production signing for Android and the required signing/provisioning for other platforms.
+- Review privacy, data retention, and security practices.
+- Document any known limitations.
 
-* Verified authentication and backend data operations.
-* Tested database permissions and RLS policies.
-* Secure production signing and verified release builds.
-* Testing on target devices and supported platforms.
-* Appropriate privacy, support, and store-release requirements.
+## Contributing
 
-Contributing
+Contributions, bug reports, and suggestions are welcome. When opening an issue, include:
 
-Wathb is an ongoing development project. Contributions and code reviews that improve functionality, accessibility, security, and maintainability are welcome.
+- A clear description of the problem or proposed improvement.
+- Steps to reproduce the issue, if applicable.
+- Expected and actual behavior.
+- Relevant logs or screenshots, with secrets and personal data removed.
 
-Please include relevant test results with proposed changes and clearly distinguish implemented functionality from planned features.
+For code changes, run:
 
-License
+```bash
+flutter test
+flutter analyze
+```
 
-No license is currently declared in this README. Unless a license is added to the repository, do not assume the source code is available for unrestricted reuse or redistribution.
+before submitting a pull request.
 
-⸻
+## License
 
-Repository: github.com/k7po/Wathb
+No license is specified in this README. Check the repository for an existing license file or add an appropriate license before presenting the project as open source for reuse.
+
+---
+
+**Project:** Wathb (وثب)
+**Repository:** https://github.com/k7po/Wathb
